@@ -18,13 +18,13 @@ class ProductInBasket(APIView):
           token_key = request.data.get("token_key")
           qty = request.data.get("qty")
           size = request.data.get("size")
-          product_id = request.data.get("product_name")
+          product = request.data.get("product_name")
           price = request.data.get("price")
           image = request.data.get("image")
           total_price = request.data.get("total_price")
           new_product, created = ProductInBasketModel.objects.get_or_create(token_key=token_key,
                 qty=qty,size=size,
-                                                                            product_id=product_id,
+                                                                            product=product,
                                                                             price=price,image=image,total_price=total_price)
           if not created:
                new_product.qty += int(qty)

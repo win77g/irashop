@@ -63,6 +63,13 @@ INSTALLED_APPS = [
     'wishlist',
     'quethen',
     'index',
+    'detskoePostelnoe',
+    'odeyala',
+    'pled',
+    'podushki',
+    'pokryvala',
+    'polotenca',
+
 ]
 
 MIDDLEWARE = [

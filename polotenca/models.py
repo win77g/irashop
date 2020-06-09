@@ -12,18 +12,7 @@ from ckeditor_uploader.fields import RichTextUploadingField
 import os
 from django.dispatch import receiver
 
-# model of Category
-class Category(MPTTModel):
-    name = models.CharField(max_length=50, unique=True,)
-    parent = TreeForeignKey('self', null=True, blank=True, related_name='children',verbose_name="Родитель", db_index=True,on_delete=models.CASCADE)
-    slug = models.SlugField(verbose_name='Транслит', null = True, unique=True,)
-    description = RichTextUploadingField(verbose_name='Текст',blank=True, null=True, default=None)
 
-    def __str__(self):
-        return " %s" % self.name
-
-    class MPTTMeta:
-        order_insertion_by = ['name']
 
 # ------------------------------модель Бренда---------------------------------------------------
 class Brend(models.Model):
@@ -33,8 +22,8 @@ class Brend(models.Model):
     def __str__(self):
         return " %s" % self.name
     class Meta:
-        verbose_name = 'Бренд'
-        verbose_name_plural = 'Бренд'
+        verbose_name = 'Производитель'
+        verbose_name_plural = 'Производитель'
 # автоматическое сохранение поля слаг в бренд
 def pre_save_brend_slug(sender,instance, *args, **kwargs):
     if not instance.slug:
@@ -50,8 +39,8 @@ class Tkan(models.Model):
     def __str__(self):
         return " %s" % self.name
     class Meta:
-        verbose_name = 'Ткань'
-        verbose_name_plural = 'Ткань'
+        verbose_name = 'Матерриал'
+        verbose_name_plural = 'Матерриал'
 # автоматическое сохранение поля слаг в бренд
 def pre_save_brend_slug(sender,instance, *args, **kwargs):
     if not instance.slug:
@@ -59,7 +48,59 @@ def pre_save_brend_slug(sender,instance, *args, **kwargs):
         instance.slug = slug
 pre_save.connect(pre_save_brend_slug, sender=Tkan)
 # ----------------------------------end Ткань--------------------------------------------------------
-# ---------------------------------Product---------------------------------------------------
+# ------------------------------модель Size---------------------------------------------------
+class Size(models.Model):
+    name = models.CharField(max_length=120,blank=True, null=True, default=None,unique=True,)
+    slug = models.SlugField(blank=True, null=True, default=None ,verbose_name='Транслит')
+    # вывод одного поля
+    def __str__(self):
+        return " %s" % self.name
+    class Meta:
+        verbose_name = 'Размер'
+        verbose_name_plural = 'Размер'
+# автоматическое сохранение поля слаг в бренд
+def pre_save_brend_slug(sender,instance, *args, **kwargs):
+    if not instance.slug:
+        slug = slugify(translit(instance.name, reversed=True))
+        instance.slug = slug
+pre_save.connect(pre_save_brend_slug, sender=Size)
+# ----------------------------------end Ткань------------------------------------------------
+# ---------------------------------Type -----------------------------------------------------
+class Type(models.Model):
+    name = models.CharField(max_length=120,blank=True, null=True, default=None,unique=True,)
+    slug = models.SlugField(blank=True, null=True, default=None ,verbose_name='Транслит')
+    # вывод одного поля
+    def __str__(self):
+        return " %s" % self.name
+    class Meta:
+        verbose_name = 'Тип назначения'
+        verbose_name_plural = 'Тип назначения'
+# автоматическое сохранение поля слаг в бренд
+def pre_save_brend_slug(sender,instance, *args, **kwargs):
+    if not instance.slug:
+        slug = slugify(translit(instance.name, reversed=True))
+        instance.slug = slug
+pre_save.connect(pre_save_brend_slug, sender=Type)
+# ---------------------------------Type end--------------------------------------------------
+
+# ----------------------------------filler weight------------------------------------------------
+class FillerWeight(models.Model):
+    name = models.CharField(max_length=120,blank=True, null=True, default=None,unique=True,)
+    slug = models.SlugField(blank=True, null=True, default=None ,verbose_name='Транслит')
+    # вывод одного поля
+    def __str__(self):
+        return " %s" % self.name
+    class Meta:
+        verbose_name = 'Плотность'
+        verbose_name_plural = 'Плотность'
+# автоматическое сохранение поля слаг в бренд
+def pre_save_brend_slug(sender,instance, *args, **kwargs):
+    if not instance.slug:
+        slug = slugify(translit(instance.name, reversed=True))
+        instance.slug = slug
+pre_save.connect(pre_save_brend_slug, sender=FillerWeight)
+# ----------------------------------filler weight end--------------------------------------------
+# ----------------------------------Product-------------------------------------------------------
 # создание названия фотки
 def image_folder(instance,filename):
     filename = instance.slug +'.'+filename.split('.')[1]
@@ -67,25 +108,19 @@ def image_folder(instance,filename):
 
 
 # модеь продукта
-class Product(models.Model):
+class Polotenca(models.Model):
     name = models.CharField(verbose_name='Название',max_length=120,blank=True, null=True ,unique=True)
+    slug = models.SlugField(blank=True, null=True, default=None,verbose_name='Транслит(Не трогать)')
     brend = models.ForeignKey(Brend,blank=True, null=True, default=None,on_delete=models.CASCADE,verbose_name='Бренд',to_field='name')
-    categ = TreeForeignKey(Category, blank=True, null=True,related_name = 'cat',on_delete=models.CASCADE,verbose_name='Категория',to_field='slug')
+    consist = models.ForeignKey(Tkan,blank=True, null=True, default=None,on_delete=models.CASCADE,verbose_name='Состав',to_field='name')
+    size = models.ForeignKey(Size,blank=True, null=True, default=None,on_delete=models.CASCADE,verbose_name='Размер',to_field='name')
+    type = models.ForeignKey(Type,blank=True, null=True, default=None,on_delete=models.CASCADE,verbose_name='Тип',to_field='name')
+    filler_weight = models.ForeignKey(FillerWeight,blank=True, null=True, default=None,on_delete=models.CASCADE,verbose_name='Плотность',to_field='name')
     key_words = models.CharField(verbose_name='Ключи',max_length=120,blank=True, null=True )
     image = models.ImageField(upload_to=image_folder, blank=True, null=True, default=None,verbose_name='Фотка')
     image_link = models.CharField(verbose_name='Фотка ссылка',max_length=120,blank=True, null=True )
-    slug = models.SlugField(blank=True, null=True, default=None,verbose_name='Транслит(Не трогать)')
-    tkan = models.ForeignKey(Tkan,blank=True, null=True, default=None,on_delete=models.CASCADE,verbose_name='Ткань',to_field='name')
-    price_polutorca = models.DecimalField(max_digits=10, decimal_places=2, default=0,verbose_name='Цена полуторка')
-    price_old_polutorca = models.DecimalField(max_digits=10, decimal_places=2, default=0,verbose_name='Старая цена полуторка')
-    price_dvuspal = models.DecimalField(max_digits=10, decimal_places=2, default=0,verbose_name='Цена двухспального')
-    price_old_dvuspal = models.DecimalField(max_digits=10, decimal_places=2, default=0,verbose_name='Старая цена двухспального')
-    price_semeuka = models.DecimalField(max_digits=10, decimal_places=2, default=0,verbose_name='Цена семейка')
-    price_old_semeuka = models.DecimalField(max_digits=10, decimal_places=2, default=0,verbose_name='Старая цена семейки')
-    price_euro = models.DecimalField(max_digits=10, decimal_places=2, default=0,verbose_name='Цена evro')
-    price_old_euro = models.DecimalField(max_digits=10, decimal_places=2, default=0,verbose_name='Старая цена evro')
-    # description = RichTextUploadingField(config_name='default')
-    # description_short = RichTextUploadingField(config_name='default')
+    price = models.DecimalField(max_digits=10, decimal_places=2, default=0,verbose_name='Цена ')
+    price_old = models.DecimalField(max_digits=10, decimal_places=2, default=0,verbose_name='Старая цена ')
     description = RichTextUploadingField(verbose_name='Текст',blank=True, null=True, default=None)
     description_short = RichTextUploadingField(verbose_name='Текст(короткий)',blank=True, null=True, default=None)
     discount = models.IntegerField(default=0,verbose_name='Скидка')
@@ -100,8 +135,8 @@ class Product(models.Model):
     def __str__(self):
         return " %s" % self.name
     class Meta:
-        verbose_name = 'Продукт'
-        verbose_name_plural = 'Продукты'
+        verbose_name = 'Полотенца'
+        verbose_name_plural = 'Полотенца'
 
 
     def image_img(self):
@@ -118,7 +153,7 @@ def pre_save_product_slug(sender,instance, *args, **kwargs):
     if not instance.slug:
         slug = slugify(translit(instance.name, reversed=True))
         instance.slug = slug
-pre_save.connect(pre_save_product_slug, sender=Product)
+pre_save.connect(pre_save_product_slug, sender=Polotenca)
 # -----------------------------end product-------------------------------------------------------------
 #  --------------------------Gallery-------------------------------------------------------
 # создание названия фотки
@@ -126,8 +161,8 @@ def image_gallary_folder(instance,filename):
     filename = instance.slug +'.'+filename.split('.')[1]
     return "{0}/{1}".format(instance.slug,filename)
 # фотки продукта
-class ProductImage(models.Model):
-    product = models.ForeignKey(Product,blank=True, null=True, default=None,on_delete=models.CASCADE)
+class PolotencaImage(models.Model):
+    product = models.ForeignKey(Polotenca,blank=True, null=True, default=None,on_delete=models.CASCADE)
     image = models.ImageField(upload_to= image_gallary_folder,blank=True, null=True, default=None)
     slug = models.SlugField(blank=True, null=True, default=None , verbose_name='Транслит')
     is_main = models.BooleanField(default=False)
@@ -149,5 +184,5 @@ def pre_save_imagegallery_slug(sender,instance, *args, **kwargs):
     if not instance.slug:
         slug = slugify(translit(instance.product.name, reversed=True))
         instance.slug = slug
-pre_save.connect(pre_save_imagegallery_slug, sender=ProductImage)
+pre_save.connect(pre_save_imagegallery_slug, sender=PolotencaImage)
 # ---------------------------------------end gallery----------------------------------

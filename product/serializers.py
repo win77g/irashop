@@ -5,7 +5,7 @@ from rest_framework import serializers
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
-        fields = ('id','name','brend','categ','image',
+        fields = ('id','name','brend','categ','key_words','image','image_link',
                   'slug','tkan','price_polutorca','price_old_polutorca',
                   'price_dvuspal','price_old_dvuspal','price_semeuka','price_old_semeuka',
                   'price_euro','price_old_euro','description','description_short',
