@@ -28,22 +28,25 @@ $(document).ready(function () {
 
       calculatingBasketAmount();
   });
-// searchbar
-           var sp = document.querySelector('.search-open');
-           var searchbar = document.querySelector('.search-inline');
-           var shclose = document.querySelector('.search-close');
-           function changeClass() {
-               searchbar.classList.add('search-visible');
-           }
-           function closesearch() {
-               searchbar.classList.remove('search-visible');
-           }
-           sp.addEventListener('click', changeClass);
-           shclose.addEventListener('click', closesearch);
 
 
 
-          
+ // searchbar
+// -------------------------------------------------------------
+
+  $('.search-open').on('click', function(event) {
+            console.log('ok')
+            event.preventDefault();
+            $('#search').addClass('open');
+            $('#search > form > input[type="search"]').focus();
+    });
+
+  $('#search, #search button.close').on('click keyup', function(event) {
+            if (event.target == this || event.target.className == 'close' || event.keyCode == 27) {
+                $(this).removeClass('open');
+                  }
+    });
+
 
 
 });
