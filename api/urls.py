@@ -16,7 +16,7 @@ from odeyala.views import OdeyalaViewSet,OdeyalaTcanViewSet,OdeyalaBrendViewSet,
 from polotenca.views import PolotencaViewSet,PolotencaTcanViewSet,PolotencaBrendViewSet,PolotencaSizeViewSet,PolotencaTypeViewSet,PolotencaFillerWeightViewSet
 from podushki.views import PodushkiViewSet,PodushkiTcanViewSet,PodushkiBrendViewSet,PodushkiSizeViewSet,PodushkiTypeViewSet,PodushkiFillerViewSet
 from pled.views import PledViewSet,PledTcanViewSet,PledBrendViewSet,PledSizeViewSet,PledTypeViewSet,PledOsobenostViewSet
-from pokryvala.views import PokryvalaViewSet,PokryvalaTcanViewSet,PokryvalaBrendViewSet
+from pokryvala.views import PokryvalaViewSet,PokryvalaTcanViewSet,PokryvalaBrendViewSet,PokryvalaSizeViewSet,PokryvalaDekorViewSet
 router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
 
@@ -57,6 +57,8 @@ router.register(r'podushki-filler',  PodushkiFillerViewSet)
 router.register(r'pokryvala',       PokryvalaViewSet)
 router.register(r'pokryvala-tkan',  PokryvalaTcanViewSet)
 router.register(r'pokryvala-brend', PokryvalaBrendViewSet)
+router.register(r'pokryvala-size',  PokryvalaSizeViewSet)
+router.register(r'pokryvala-dekor', PokryvalaDekorViewSet)
 # Плед
 router.register(r'polotenca',            PolotencaViewSet)
 router.register(r'polotenca-tkan',       PolotencaTcanViewSet)

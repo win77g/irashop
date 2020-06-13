@@ -45,6 +45,40 @@ def pre_save_brend_slug(sender,instance, *args, **kwargs):
         instance.slug = slug
 pre_save.connect(pre_save_brend_slug, sender=Tkan)
 # ----------------------------------end Ткань--------------------------------------------------------
+# ------------------------------------модель Dekor---------------------------------------------------
+class Dekor(models.Model):
+    name = models.CharField(max_length=120,blank=True, null=True, default=None,unique=True,)
+    slug = models.SlugField(blank=True, null=True, default=None ,verbose_name='Транслит')
+    # вывод одного поля
+    def __str__(self):
+        return " %s" % self.name
+    class Meta:
+        verbose_name = 'Декорирование'
+        verbose_name_plural = 'Декорирование'
+# автоматическое сохранение поля слаг в бренд
+def pre_save_brend_slug(sender,instance, *args, **kwargs):
+    if not instance.slug:
+        slug = slugify(translit(instance.name, reversed=True))
+        instance.slug = slug
+pre_save.connect(pre_save_brend_slug, sender=Dekor)
+# ----------------------------------end Ткань----------------------------------------------
+# ------------------------------------модель Size---------------------------------------------------
+class Size(models.Model):
+    name = models.CharField(max_length=120,blank=True, null=True, default=None,unique=True,)
+    slug = models.SlugField(blank=True, null=True, default=None ,verbose_name='Транслит')
+    # вывод одного поля
+    def __str__(self):
+        return " %s" % self.name
+    class Meta:
+        verbose_name = 'Размер'
+        verbose_name_plural = 'Размер'
+# автоматическое сохранение поля слаг в бренд
+def pre_save_brend_slug(sender,instance, *args, **kwargs):
+    if not instance.slug:
+        slug = slugify(translit(instance.name, reversed=True))
+        instance.slug = slug
+pre_save.connect(pre_save_brend_slug, sender=Size)
+# ----------------------------------end Ткань----------------------------------------------
 # ----------------------------------Product-------------------------------------------------------
 # создание названия фотки
 def image_folder(instance,filename):
@@ -59,6 +93,8 @@ class Pokryvala(models.Model):
 
     brend = models.ForeignKey(Brend,blank=True, null=True, default=None,on_delete=models.CASCADE,verbose_name='Бренд',to_field='name')
     tkan = models.ForeignKey(Tkan,blank=True, null=True, default=None,on_delete=models.CASCADE,verbose_name='Ткань',to_field='name')
+    size = models.ForeignKey(Size,blank=True, null=True, default=None,on_delete=models.CASCADE,verbose_name='Размер',to_field='name')
+    dekor = models.ForeignKey(Dekor,blank=True, null=True, default=None,on_delete=models.CASCADE,verbose_name='Декор',to_field='name')
 
     key_words = models.CharField(verbose_name='Ключи',max_length=120,blank=True, null=True )
     image = models.ImageField(upload_to=image_folder, blank=True, null=True, default=None,verbose_name='Фотка')

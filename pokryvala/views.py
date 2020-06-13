@@ -18,7 +18,7 @@ class PokryvalaViewSet(viewsets.ModelViewSet):
     queryset = Pokryvala.objects.all()
     serializer_class = PokryvalaSerializer
     filter_backends = [DjangoFilterBackend,OrderingFilter,SearchFilter]
-    filter_fields = ['slug','brend','tkan']
+    filter_fields = ['slug','brend','tkan','size','dekor']
     pagination_class = PostPageNumberPagination#PageNumberPagination #LimitOffsetPagination
 
 
@@ -39,6 +39,16 @@ class PokryvalaBrendViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.AllowAny, ]
     queryset = Brend.objects.all()
     serializer_class = BrendSerializer
+
+class PokryvalaSizeViewSet(viewsets.ModelViewSet):
+    permission_classes = [permissions.AllowAny, ]
+    queryset = Size.objects.all()
+    serializer_class = SizeSerializer
+
+class PokryvalaDekorViewSet(viewsets.ModelViewSet):
+    permission_classes = [permissions.AllowAny, ]
+    queryset = Dekor.objects.all()
+    serializer_class = DekorSerializer
 
 class GetPokryvalaImageViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.AllowAny, ]

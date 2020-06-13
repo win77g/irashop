@@ -32,7 +32,36 @@ class TkanAdmin (admin.ModelAdmin):
 # Register your models here.
 admin.site.register(Tkan, TkanAdmin)
 # ----------------------------END Tkan--------------------------------------------------------------
+# ----------------------------Size--------------------------------------------------------------
+class SizeAdmin (admin.ModelAdmin):
+   #  вывод всех полей в админку
+      list_display = [field.name for field in Size._meta.fields]
 
+      class Meta:
+           model = Size
+      def get_prepopulated_fields(self, request, obj=None):
+
+        return {
+            'slug': ('name',)
+        }
+# Register your models here.
+admin.site.register(Size, SizeAdmin)
+# ----------------------------END Size--------------------------------------------------------------
+# ----------------------------Dekor--------------------------------------------------------------
+class DekorAdmin (admin.ModelAdmin):
+   #  вывод всех полей в админку
+      list_display = [field.name for field in Dekor._meta.fields]
+
+      class Meta:
+           model = Dekor
+      def get_prepopulated_fields(self, request, obj=None):
+
+        return {
+            'slug': ('name',)
+        }
+# Register your models here.
+admin.site.register(Dekor, DekorAdmin)
+# ----------------------------END Dekor--------------------------------------------------------------
 # ----------------------------Gallery---------------------------------------------------------------
 #добавление фоток внизу прдукт админки
 class PokryvalaImageInline(admin.TabularInline):
