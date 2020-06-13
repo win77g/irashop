@@ -70,7 +70,6 @@ INSTALLED_APPS = [
     'podushki',
     'pokryvala',
     'polotenca',
-
 ]
 
 MIDDLEWARE = [
