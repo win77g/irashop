@@ -11,7 +11,7 @@ from userCabinet.views import ClientViewSet
 from home.views import BigSliderViewSet,AdvertisingImageViewSet
 from wishlist.views import WishlistPost,WishlistViewSet,DeleteWishlist,WishlistPostDp
 from quethen.views import QuethenViewSet
-from detskoePostelnoe.views import DetskaPostelSizeViewSet,DetskaPostelViewSet,DetskaPostelTcanViewSet,DetskaPostelBrendViewSet
+from detskoePostelnoe.views import DetskaPostelTypeViewSet,DetskaPostelSizeViewSet,DetskaPostelViewSet,DetskaPostelTcanViewSet,DetskaPostelBrendViewSet
 from odeyala.views import OdeyalaViewSet,OdeyalaTcanViewSet,OdeyalaBrendViewSet,OdeyalaSizeViewSet,OdeyalaTypeViewSet,OdeyalaFillerViewSet,OdeyalaFillerWeightViewSet
 from polotenca.views import PolotencaViewSet,PolotencaTcanViewSet,PolotencaBrendViewSet,PolotencaSizeViewSet,PolotencaTypeViewSet,PolotencaFillerWeightViewSet
 from podushki.views import PodushkiViewSet,PodushkiTcanViewSet,PodushkiBrendViewSet,PodushkiSizeViewSet,PodushkiTypeViewSet,PodushkiFillerViewSet
@@ -31,6 +31,7 @@ router.register(r'detskoe-postelnoe', DetskaPostelViewSet)
 router.register(r'detskoe-postelnoe-tkan', DetskaPostelTcanViewSet)
 router.register(r'detskoe-postelnoe-brend', DetskaPostelBrendViewSet)
 router.register(r'detskoe-postelnoe-size', DetskaPostelSizeViewSet)
+router.register(r'detskoe-postelnoe-type', DetskaPostelTypeViewSet)
 # Одеяла
 router.register(r'odeyala',       OdeyalaViewSet)
 router.register(r'odeyala-tkan',  OdeyalaTcanViewSet)

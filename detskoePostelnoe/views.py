@@ -18,7 +18,7 @@ class DetskaPostelViewSet(viewsets.ModelViewSet):
     queryset = DetskaPostel.objects.all()
     serializer_class = DetskaPostelSerializer
     filter_backends = [DjangoFilterBackend,OrderingFilter,SearchFilter]
-    filter_fields = ['slug','brend','tkan','size','top']
+    filter_fields = ['slug','brend','tkan','size','top','type']
 
     pagination_class = PostPageNumberPagination#PageNumberPagination #LimitOffsetPagination
 
@@ -52,6 +52,11 @@ class DetskaPostelBrendViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.AllowAny, ]
     queryset = Brend.objects.all()
     serializer_class = BrendSerializer
+
+class DetskaPostelTypeViewSet(viewsets.ModelViewSet):
+    permission_classes = [permissions.AllowAny, ]
+    queryset = Type.objects.all()
+    serializer_class = TypeSerializer
 
 class DetskaPostelSizeViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.AllowAny, ]

@@ -26,6 +26,7 @@ SECRET_KEY = '$2s81)%!49cba64kgl0hbrwk3y0yqfch$a408h##)6u_$6mrij'
 DEBUG = True
 
 ALLOWED_HOSTS = ['www.percale.com.ua']
+#ALLOWED_HOSTS = []
 
 
 # Application definition
