@@ -7,6 +7,10 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from detskoePostelnoe.models import DetskaPostel
 from pled.models import Pled
+from podushki.models import Podushki
+from odeyala.models import Odeyala
+from polotenca.models import Polotenca
+from pokryvala.models import Pokryvala
 # Create your views here.
 
 class WishlistViewSet(viewsets.ModelViewSet):
@@ -30,21 +34,18 @@ class WishlistPost(APIView):
            category = request.data.get("category")
            if (category == 'detskoe-postelnoe'):
             pr = DetskaPostel.objects.filter(slug=slug).values()
-           # if (category=='pled'):
-           #  pr = Pled.objects.filter(slug=slug).values()
-           # if (category=='gostinye'):
-           #  pr = GostinyeModel.objects.filter(slug=slug).values()
-           # if (category=='prihozhie'):
-           #  pr = PrihozhieModel.objects.filter(slug=slug).values()
-           # if (category=='spalni'):
-           #  pr = SpalniModel.objects.filter(slug=slug).values()
-           # if (category=='detskie'):
-           #  pr = DetskieModel.objects.filter(slug=slug).values()
-           # if (category=='derevyannayamebel'):
-           #  pr = DerevyannayamebelModel.objects.filter(slug=slug).values()
-           # if (category=='myagkayamebel'):
-           #  pr = MyagkayamebelModel.objects.filter(slug=slug).values()
-           # pr = Product.objects.filter(slug=slug).values()
+           if (category=='pled'):
+            pr = Pled.objects.filter(slug=slug).values()
+           if (category=='postelnoe-belie'):
+            pr = Product.objects.filter(slug=slug).values()
+           if (category=='podushki'):
+            pr = Podushki.objects.filter(slug=slug).values()
+           if (category=='odeyala'):
+            pr = Odeyala.objects.filter(slug=slug).values()
+           if (category=='polotenca'):
+            pr = Polotenca.objects.filter(slug=slug).values()
+           if (category=='pokryvala'):
+            pr = Pokryvala.objects.filter(slug=slug).values()
            product = querySet_to_list(pr)
            print(pr)
            product = product[0]
@@ -73,6 +74,17 @@ class WishlistPostDp(APIView):
             pr = DetskaPostel.objects.filter(slug=slug).values()
            if (category=='pled'):
             pr = Pled.objects.filter(slug=slug).values()
+           if (category=='postelnoe-belie'):
+            pr = Product.objects.filter(slug=slug).values()
+           if (category=='podushki'):
+            pr = Podushki.objects.filter(slug=slug).values()
+           if (category=='odeyala'):
+            pr = Odeyala.objects.filter(slug=slug).values()
+           if (category=='polotenca'):
+            pr = Polotenca.objects.filter(slug=slug).values()
+           if (category=='pokryvala'):
+            pr = Pokryvala.objects.filter(slug=slug).values()
+
            product = querySet_to_list(pr)
            print(pr)
            product = product[0]
