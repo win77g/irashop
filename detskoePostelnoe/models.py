@@ -99,7 +99,7 @@ class DetskaPostel(models.Model):
     slug = models.SlugField(blank=True, null=True, default=None,verbose_name='Транслит(Не трогать)')
     tkan = models.ForeignKey(Tkan,blank=True, null=True, default=None,on_delete=models.CASCADE,verbose_name='Ткань',to_field='name')
     size = models.ForeignKey(Size,blank=True, null=True, default=None,on_delete=models.CASCADE,verbose_name='Размер',to_field='name')
-    type = models.ForeignKey(Type,blank=True, null=True, default=None,on_delete=models.CASCADE,verbose_name='Тип',to_field='name')
+    type = models.ForeignKey(Type,blank=True, null=True, default=None,on_delete=models.CASCADE,verbose_name='Рисунок',to_field='name')
     price = models.DecimalField(max_digits=10, decimal_places=2, default=0,verbose_name='Цена ')
     price_old = models.DecimalField(max_digits=10, decimal_places=2, default=0,verbose_name='Старая цена ')
     description = RichTextUploadingField(verbose_name='Текст',blank=True, null=True, default=None)

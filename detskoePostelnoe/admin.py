@@ -40,7 +40,7 @@ class TkanAdmin (admin.ModelAdmin):
 # Register your models here.
 admin.site.register(Tkan, TkanAdmin)
 # ----------------------------END Tkan--------------------------------------------------------------
-# ----------------------------Tkan------------------------------------------------------------------
+# ----------------------------Size------------------------------------------------------------------
 class SizeAdmin (admin.ModelAdmin):
    #  вывод всех полей в админку
       list_display = [field.name for field in Tkan._meta.fields]
@@ -55,7 +55,23 @@ class SizeAdmin (admin.ModelAdmin):
         }
 # Register your models here.
 admin.site.register(Size, SizeAdmin)
-# ----------------------------END Tkan--------------------------------------------------------------
+# ----------------------------END Size---------------------------------------------------------------
+# ----------------------------Type------------------------------------------------------------------
+class TypeAdmin (admin.ModelAdmin):
+   #  вывод всех полей в админку
+      list_display = [field.name for field in Type._meta.fields]
+
+      class Meta:
+           model = Type
+      def get_prepopulated_fields(self, request, obj=None):
+        # can't use `prepopulated_fields = ..` because it breaks the admin validation
+        # for translated fields. This is the official django-parler workaround.
+        return {
+            'slug': ('name',)
+        }
+# Register your models here.
+admin.site.register(Type, TypeAdmin)
+# ----------------------------END Type---------------------------------------------------------------
 # ----------------------------Gallery---------------------------------------------------------------
 #добавление фоток внизу прдукт админки
 class DetskaPostelImageInline(admin.TabularInline):
