@@ -9,7 +9,17 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import generics
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from django_filters import rest_framework as filters
+
 # вывод всех продуктов по категории
+class ProductFilter(filters.FilterSet):
+    polutorca = filters.NumberFilter(field_name="price_polutorca", lookup_expr='gte')
+    dvuspal = filters.NumberFilter(field_name="price_dvuspal", lookup_expr='gte')
+    semeuka = filters.NumberFilter(field_name="price_semeuka", lookup_expr='gte')
+    euro = filters.NumberFilter(field_name="price_euro", lookup_expr='gte')
+    class Meta:
+        model = Product
+        fields = ['polutorca','dvuspal','semeuka','euro','slug','categ','brend','tkan',]
 class ProductViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows users to be viewed or edited.
@@ -18,19 +28,12 @@ class ProductViewSet(viewsets.ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
     filter_backends = [DjangoFilterBackend,OrderingFilter,SearchFilter]
-    filter_fields = ['slug','categ','brend','tkan','price_polutorca']
-
+    # filter_fields = ['slug','categ','brend','tkan','price_polutorca',]
+    filterset_class = ProductFilter
     pagination_class = PostPageNumberPagination#PageNumberPagination #LimitOffsetPagination
 
 
-# class Search(APIView):
-#      permission_classes = [permissions.AllowAny, ]
-#      def get(self, request, format):
-#         queryset = Product.objects.all()
-#         serializer = ProductSerializer
-#         filter_backends = [SearchFilter]
-#         search_fields = ['categ','brend','tkan']
-#         return Response(serializer.data)
+
 class SearchAPIView(generics.ListCreateAPIView):
     permission_classes = [permissions.AllowAny, ]
     search_fields = ['categ__name','brend__name','tkan__name','name']
