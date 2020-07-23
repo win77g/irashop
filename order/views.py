@@ -5,6 +5,7 @@ from rest_framework import viewsets,permissions
 from order.serializers import *
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from django.core.mail import send_mail
 # вывод всех продуктов по категории
 class ProductInBasketViewSet(viewsets.ModelViewSet):
     permission_classes = [ permissions.IsAuthenticated, ]
@@ -63,6 +64,7 @@ class UpdateProductInBasket(APIView):
 class Order(APIView):
        def post(self,request):
            data = request.data
+           customer_email = data["email"],
            products_in_basket = ProductInBasketModel.objects.filter(token_key=data["token_key"], is_active=True)#.exclude(order__isnull=False)
            print(products_in_basket)
            user = User.objects.get(auth_token = data["token_key"])
@@ -92,6 +94,11 @@ class Order(APIView):
                                                  order = order,
                     )
            products_in_basket.delete()
+           send_mail('Интернет магазин всякой х-ни',
+                              'Ваш заказ принят,наберитесь терпения и ждите...',
+                              'sergsergio777@gmail.com',
+                              [customer_email],
+                              )
            return Response(status=201)
 
 
