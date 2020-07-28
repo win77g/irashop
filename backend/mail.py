@@ -1,5 +1,5 @@
 class SendMail():
-    host = 'smtp.hushmail.net'
-    email = 'win21g@hushmail.com'
-    password = 'mysuntimyr'
+    host = 'smtp.sendgrid.net'
+    email = 'sergsergio777@gmail.com'
+    password = 'marmon30'
     #
