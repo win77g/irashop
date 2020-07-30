@@ -3506,7 +3506,9 @@ i:before {
   border-bottom: 1px solid #d6d6d6;
   padding: 16px 0px;
 }
-
+.qrt {
+ color: #666666;
+}
 .p_d_title {
   font-size: 16px;
   color: #000;
