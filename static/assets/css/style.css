@@ -3502,8 +3502,8 @@ i:before {
   line-height: 24px;
   color: #666666;
   letter-spacing: .325px;
-  /* border-top: 1px solid #d6d6d6;
-  border-bottom: 1px solid #d6d6d6; */
+  border-top: 1px solid #d6d6d6;
+  border-bottom: 1px solid #d6d6d6;
   padding: 16px 0px;
 }
 
