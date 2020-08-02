@@ -28,7 +28,7 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['www.percale.com.ua']
 #ALLOWED_HOSTS = []
-
+SENDGRID_SANDBOX_MODE_IN_DEBUG=False
 
 # Application definition
 
