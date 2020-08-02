@@ -99,7 +99,7 @@ class Order(APIView):
            send_mail('Интернет магазин всякой х-ни',
                               'Ваш заказ принят,наберитесь терпения и ждите...',
                               'sergsergio777@gmail.com',
-                              ['win21g@mail.ru'], fail_silently=False
+                              ['win21g@mail.ru'], fail_silently=False,
                               )
            return Response(status=201)
 

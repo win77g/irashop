@@ -237,10 +237,11 @@ DJOSER = {
 #         # 'current_user':'authentication.serializers.CurrentUserSerializer',
 #     }
 # }
-SENDGRID_API_KEY = os.getenv('SENDGRID_API_KEY')
-EMAIL_HOST = SendMail.host
-EMAIL_HOST_USER = SendMail.email
-EMAIL_HOST_PASSWORD = SendMail.password
-EMAIL_PORT =  587
-EMAIL_USE_TLS = True
+EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
+SENDGRID_API_KEY = os.environ.get("SENDGRID_API_KEY")
+# EMAIL_HOST = SendMail.host
+# EMAIL_HOST_USER = SendMail.email
+# EMAIL_HOST_PASSWORD = SendMail.password
+# EMAIL_PORT =  587
+# EMAIL_USE_TLS = True
 #EMAIL_USE_SSL = False
