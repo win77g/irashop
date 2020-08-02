@@ -1,5 +1,5 @@
 class SendMail():
-    host = 'smtp.gmail.com'
-    email = 'sergsergio777@gmail.com'
-    password = 'marmon30'
+    host = 'smtp.sendgrid.net'
+    email = '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'
+    password = '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'
     # 
