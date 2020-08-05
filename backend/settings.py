@@ -28,7 +28,7 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['www.percale.com.ua']
 #ALLOWED_HOSTS = []
-SENDGRID_SANDBOX_MODE_IN_DEBUG=False
+# SENDGRID_SANDBOX_MODE_IN_DEBUG=False
 
 # Application definition
 
@@ -239,9 +239,9 @@ DJOSER = {
 # }
 # EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
 # SENDGRID_API_KEY = os.environ.get("SENDGRID_API_KEY")
-EMAIL_HOST = 'smtp.sendgrid.net'
-EMAIL_HOST_USER = 'apikey'
-EMAIL_HOST_PASSWORD = os.environ.get("SENDGRID_API_KEY")
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'sergsergio777@gmail.com'
+EMAIL_HOST_PASSWORD = 'marmon300'
 EMAIL_PORT =  587
 EMAIL_USE_TLS = True
 #EMAIL_USE_SSL = False
