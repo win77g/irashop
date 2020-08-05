@@ -66,6 +66,7 @@ class Order(APIView):
        def post(self,request):
            data = request.data
            customer_email = data["email"],
+           print(customer_email)
            products_in_basket = ProductInBasketModel.objects.filter(token_key=data["token_key"], is_active=True)#.exclude(order__isnull=False)
            print(products_in_basket)
            user = User.objects.get(auth_token = data["token_key"])
@@ -79,7 +80,7 @@ class Order(APIView):
                                          status_id = 1,
                                          token = data["token_key"])
            for name in products_in_basket:
-                print(customer_email)
+                
                 if name:
                     id = name.id
                     product_in_baskets = ProductInBasketModel.objects.get(token_key=data["token_key"], is_active=True,id = id )
@@ -96,10 +97,11 @@ class Order(APIView):
                                                  order = order,
                     )
            products_in_basket.delete()
+           print(customer_email)
            send_mail('Percale - Интернет магазин домашнего текстиля',
                               'Ваш заказ принят,наберитесь терпения и ждите...',
                               'sergsergio777@gmail.com',
-                              [customer_email], fail_silently=False,
+                              customer_email, fail_silently=False,
                               )
            return Response(status=201)
 

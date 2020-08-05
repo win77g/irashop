@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
-
+from .mail import GoogleSmtp
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -25,6 +25,7 @@ SECRET_KEY = '$2s81)%!49cba64kgl0hbrwk3y0yqfch$a408h##)6u_$6mrij'
 # SECURITY WARNING: don't run with debug turned on in production!
 #DEBUG = True
 DEBUG = False
+
 
 ALLOWED_HOSTS = ['www.percale.com.ua']
 #ALLOWED_HOSTS = []
@@ -241,7 +242,7 @@ DJOSER = {
 # SENDGRID_API_KEY = os.environ.get("SENDGRID_API_KEY")
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'sergsergio777@gmail.com'
-EMAIL_HOST_PASSWORD = ''
+EMAIL_HOST_PASSWORD = GoogleSmtp.password
 EMAIL_PORT =  587
 EMAIL_USE_TLS = True
 #EMAIL_USE_SSL = False
