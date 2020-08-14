@@ -17,6 +17,7 @@ from polotenca.views import PolotencaViewSet,PolotencaTcanViewSet,PolotencaBrend
 from podushki.views import PodushkiViewSet,PodushkiTcanViewSet,PodushkiBrendViewSet,PodushkiSizeViewSet,PodushkiTypeViewSet,PodushkiFillerViewSet
 from pled.views import PledViewSet,PledTcanViewSet,PledBrendViewSet,PledSizeViewSet,PledTypeViewSet,PledOsobenostViewSet
 from pokryvala.views import PokryvalaViewSet,PokryvalaTcanViewSet,PokryvalaBrendViewSet,PokryvalaSizeViewSet,PokryvalaDekorViewSet
+from users.views import SendMailForNewEmail,PasswordResetView
 router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
 
@@ -93,8 +94,8 @@ urlpatterns = [
     path('wishlispost/',WishlistPost.as_view()),
     path('wishlistdp/',WishlistPostDp.as_view()),
     path('deletewishlist/',DeleteWishlist.as_view()),
-
-
+    path('changepassword/',SendMailForNewEmail.as_view()),
+    path('password/reset/confirm/', PasswordResetView.as_view(),),
 ]\
                + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)\
                + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

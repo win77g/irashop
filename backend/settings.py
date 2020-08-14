@@ -30,7 +30,8 @@ DEBUG = True
 ALLOWED_HOSTS = ['www.percale.com.ua']
 #ALLOWED_HOSTS = []
 # SENDGRID_SANDBOX_MODE_IN_DEBUG=False
-
+# if DEBUG:
+#     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # Application definition
 
 INSTALLED_APPS = [
@@ -230,7 +231,15 @@ REST_FRAMEWORK = {
 
 # AUTH_USER_MODEL = 'authapp.User'
 DJOSER = {
-    'LOGIN_FIELD': 'email',}
+    'LOGIN_FIELD': 'email',
+    'PASSWORD_RESET_CONFIRM_URL': '#/password/reset/confirm/{uid}/{token}',
+    'USERNAME_RESET_CONFIRM_URL': '#/username/reset/confirm/{uid}/{token}',
+    'ACTIVATION_URL': '#/activate/{uid}/{token}',
+    'SEND_ACTIVATION_EMAIL': True,
+    'SERIALIZERS': {},
+    
+    
+    }
 #     'USER_CREATE_PASWORD_RETYPE':True,
 #     'SERIALIZERS':{
 #         'user_create':'authapp.serializers.UserCreateSerializer',
