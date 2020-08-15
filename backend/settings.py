@@ -23,8 +23,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '$2s81)%!49cba64kgl0hbrwk3y0yqfch$a408h##)6u_$6mrij'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-#DEBUG = False
+#DEBUG = True
+DEBUG = False
 
 
 ALLOWED_HOSTS = ['www.percale.com.ua']
@@ -251,6 +251,7 @@ DJOSER = {
 # SENDGRID_API_KEY = os.environ.get("SENDGRID_API_KEY")
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'sergsergio777@gmail.com'
+#EMAIL_HOST_USER = 'percaleshop@gmail.com'
 EMAIL_HOST_PASSWORD = GoogleSmtp.password
 EMAIL_PORT =  587
 EMAIL_USE_TLS = True
