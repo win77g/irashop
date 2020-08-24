@@ -23,12 +23,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '$2s81)%!49cba64kgl0hbrwk3y0yqfch$a408h##)6u_$6mrij'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-#DEBUG = True
-DEBUG = False
+DEBUG = True
+#DEBUG = False
 
 
-ALLOWED_HOSTS = ['www.percale.com.ua']
-#ALLOWED_HOSTS = []
+#ALLOWED_HOSTS = ['www.percale.com.ua']
+ALLOWED_HOSTS = []
 # SENDGRID_SANDBOX_MODE_IN_DEBUG=False
 # if DEBUG:
 #     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
@@ -203,9 +203,9 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated',
     ),
     # 'PAGE_SIZE':10,
-
+   
     'DEFAULT_AUTHENTICATION_CLASSES':(
-        # 'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
         'rest_framework.authentication.TokenAuthentication',
         'rest_framework.authentication.BasicAuthentication',
         #'rest_framework.authentication.SessionAuthentication',
@@ -228,18 +228,23 @@ REST_FRAMEWORK = {
     #    ),
     # 'DEFAULT_METADATA_CLASS':'rest_framework_json_api.metadata.JSONAPIMetadata'
 }
-
-# AUTH_USER_MODEL = 'authapp.User'
+#AUTH_USER_MODEL = 'userauth.User'
 DJOSER = {
     'LOGIN_FIELD': 'email',
+    
     'PASSWORD_RESET_CONFIRM_URL': '#/password/reset/confirm/{uid}/{token}',
     'USERNAME_RESET_CONFIRM_URL': '#/username/reset/confirm/{uid}/{token}',
     'ACTIVATION_URL': '#/activate/{uid}/{token}',
     'SEND_ACTIVATION_EMAIL': True,
-    'SERIALIZERS': {},
+    'SERIALIZERS': {
+        # 'user_create':'userauth.serializers.UserCreateSerializer',
+        # 'user':'userauth.serializers.UserCreateSerializer',
+        # 'activation': 'djoser.email.ActivationEmail',
+    },
     
     
     }
+     
 #     'USER_CREATE_PASWORD_RETYPE':True,
 #     'SERIALIZERS':{
 #         'user_create':'authapp.serializers.UserCreateSerializer',
@@ -250,8 +255,8 @@ DJOSER = {
 # EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
 # SENDGRID_API_KEY = os.environ.get("SENDGRID_API_KEY")
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'sergsergio777@gmail.com'
-#EMAIL_HOST_USER = 'percaleshop@gmail.com'
+#EMAIL_HOST_USER = 'sergsergio777@gmail.com'
+EMAIL_HOST_USER = 'percaleshop@gmail.com'
 EMAIL_HOST_PASSWORD = GoogleSmtp.password
 EMAIL_PORT =  587
 EMAIL_USE_TLS = True
