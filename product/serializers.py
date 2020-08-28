@@ -8,7 +8,7 @@ class ProductSerializer(serializers.ModelSerializer):
         fields = ('id','name','brend','categ','key_words','image','image_link',
                   'slug','tkan','price_polutorca','price_old_polutorca',
                   'price_dvuspal','price_old_dvuspal','price_semeuka','price_old_semeuka',
-                  'price_euro','price_old_euro','description','description_short',
+                  'price_euro','price_old_euro','description','size_map','description_short',
                   'discount','is_active','new_product','top','slider','comments')
 
 class TkanSerializer(serializers.ModelSerializer):

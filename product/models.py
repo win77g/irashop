@@ -87,6 +87,7 @@ class Product(models.Model):
     # description = RichTextUploadingField(config_name='default')
     # description_short = RichTextUploadingField(config_name='default')
     description = RichTextUploadingField(verbose_name='Текст',blank=True, null=True, default=None)
+    size_map = RichTextUploadingField(verbose_name='Карта размеров',blank=True, null=True, default=None)
     description_short = RichTextUploadingField(verbose_name='Текст(короткий)',blank=True, null=True, default=None)
     discount = models.IntegerField(default=0,verbose_name='Скидка')
     is_active = models.BooleanField(default=True,verbose_name='В наличии')
