@@ -84,8 +84,8 @@ develop-eggs/
 dist/
 downloads/
 static/media
-static/assets/img
-assets/img
+# static/assets/img
+# assets/img
 media/
 eggs/
 lib/
