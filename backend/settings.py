@@ -27,7 +27,7 @@ DEBUG = True
 #DEBUG = False
 
 
-ALLOWED_HOSTS = ['postelshop.pythonanywhere.com']
+ALLOWED_HOSTS = ['percale.com.ua']
 #ALLOWED_HOSTS = []
 # SENDGRID_SANDBOX_MODE_IN_DEBUG=False
 # if DEBUG:
