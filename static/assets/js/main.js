@@ -50,3 +50,16 @@ $(document).ready(function () {
 
 
 });
+
+$(document).ready(function () {
+	$("#accordion li > h4").click(function () {
+
+		if ($(this).next().is(':visible')) {
+			$(this).next().slideUp(300);
+			$(this).children(".plusminus").text('+');
+		} else {
+			$(this).next("#accordion ul").slideDown(300);
+			$(this).children(".plusminus").text('-');
+		}
+	});
+});
