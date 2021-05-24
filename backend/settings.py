@@ -27,8 +27,8 @@ DEBUG = True
 #DEBUG = False
 
 
-ALLOWED_HOSTS = ['www.percale.com.ua']
-#ALLOWED_HOSTS = []
+#ALLOWED_HOSTS = ['www.percale.com.ua']
+ALLOWED_HOSTS = []
 # SENDGRID_SANDBOX_MODE_IN_DEBUG=False
 # if DEBUG:
 #     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
@@ -255,8 +255,8 @@ DJOSER = {
 # EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
 # SENDGRID_API_KEY = os.environ.get("SENDGRID_API_KEY")
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'sergsergio777@gmail.com'
-# EMAIL_HOST_USER = 'percaleshop@gmail.com'
+#EMAIL_HOST_USER = 'sergsergio777@gmail.com'
+EMAIL_HOST_USER = 'percaleshop@gmail.com'
 EMAIL_HOST_PASSWORD = GoogleSmtp.password
 EMAIL_PORT =  587
 EMAIL_USE_TLS = True

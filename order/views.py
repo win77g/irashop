@@ -112,7 +112,7 @@ class Order(APIView):
 
            send_mail('Percale - Интернет магазин домашнего текстиля',
                               plain_message,
-                              'sergsergio777@gmail.com',
+                              'percaleshop@gmail.com',
                               customer_email, html_message=html_message,
                               )
            products_in_basket.delete()
