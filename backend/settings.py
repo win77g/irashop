@@ -27,8 +27,8 @@ DEBUG = True
 #DEBUG = False
 
 
-ALLOWED_HOSTS = ['www.percale.com.ua']
-#ALLOWED_HOSTS = []
+#ALLOWED_HOSTS = ['www.percale.com.ua']
+ALLOWED_HOSTS = []
 # SENDGRID_SANDBOX_MODE_IN_DEBUG=False
 # if DEBUG:
 #     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

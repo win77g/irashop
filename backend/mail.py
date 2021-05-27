@@ -1,3 +1,3 @@
 class GoogleSmtp:
-    #password = 'marmon300'
-    password = 'igor1402'
+    password = 'kznucjsfoonnajhc'
+    # password = 'igor1402'
