@@ -67,6 +67,7 @@ class Order(APIView):
        def post(self,request):
            data = request.data
            customer_email = data["email"],
+           own_email = ['percaleshop@gmail.com']
            customer_name = data["firstname"],
            customer_surname = data["lastname"],
            customer_tel = data["phone"],
@@ -125,9 +126,9 @@ class Order(APIView):
                                                    'comments' : comments})
            plain_message_own = strip_tags(html_message_for_own)                                        
            send_mail('Новый заказ',
-                              plain_message,
+                              plain_message_own,
                               'percaleshop@gmail.com',
-                              'percaleshop@gmail.com', html_message_for_own=html_message_for_own,
+                              own_email, html_message=html_message_for_own,
                               )                                        
            send_mail('Percale - Интернет магазин домашнего текстиля',
                               plain_message,
