@@ -117,12 +117,12 @@ class Order(APIView):
            plain_message = strip_tags(html_message)
            html_message_for_own = render_to_string('mail_for_own.html',{'context':prod,'order':order, 
                                                    'total_price':total, 'delivery':delivery,
-                                                   'customer_email' : email,
-                                                   'customer_name' : firstname,
-                                                   'customer_surname' : lastname,
-                                                   'customer_tel' : phone,
-                                                   'customer_address' : address,
-                                                   'comments' : comment})
+                                                   'customer_email' : customer_email,
+                                                   'customer_name' : customer_name,
+                                                   'customer_surname' : customer_surname,
+                                                   'customer_tel' : customer_tel,
+                                                   'customer_address' : customer_address,
+                                                   'comments' : comments})
            plain_message_own = strip_tags(html_message_for_own)                                        
            send_mail('Новый заказ',
                               plain_message,
