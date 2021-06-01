@@ -67,6 +67,12 @@ class Order(APIView):
        def post(self,request):
            data = request.data
            customer_email = data["email"],
+           customer_name = data["firstname"],
+           customer_surname = data["lastname"],
+           customer_tel = data["phone"],
+           customer_address = data["address"],
+           comments = data["comment"],
+
         #    print(customer_email)
            products_in_basket = ProductInBasketModel.objects.filter(token_key=data["token_key"], is_active=True)#.exclude(order__isnull=False)
            prod = products_in_basket.values()
@@ -109,7 +115,20 @@ class Order(APIView):
            
            html_message = render_to_string('mail_template.html', {'context':prod,'order':order, 'total_price':total, 'delivery':delivery})
            plain_message = strip_tags(html_message)
-
+           html_message_for_own = render_to_string('mail_for_own.html',{'context':prod,'order':order, 
+                                                   'total_price':total, 'delivery':delivery,
+                                                   'customer_email' : email,
+                                                   'customer_name' : firstname,
+                                                   'customer_surname' : lastname,
+                                                   'customer_tel' : phone,
+                                                   'customer_address' : address,
+                                                   'comments' : comment})
+           plain_message_own = strip_tags(html_message_for_own)                                        
+           send_mail('Новый заказ',
+                              plain_message,
+                              'percaleshop@gmail.com',
+                              'percaleshop@gmail.com', html_message_for_own=html_message_for_own,
+                              )                                        
            send_mail('Percale - Интернет магазин домашнего текстиля',
                               plain_message,
                               'percaleshop@gmail.com',
