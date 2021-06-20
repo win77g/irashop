@@ -9,7 +9,7 @@ from blog.views import BlogViewSet,TegViewSet
 from users.views import UserViewSet
 from userCabinet.views import ClientViewSet
 from home.views import BigSliderViewSet,AdvertisingImageViewSet
-from wishlist.views import WishlistPost,WishlistViewSet,DeleteWishlist,WishlistPostDp,WishlistDpViewSet
+from wishlist.views import WishlistPost,WishlistViewSet,DeleteWishlist,DeleteWishlistDp,WishlistPostDp,WishlistDpViewSet
 from quethen.views import QuethenViewSet
 from detskoePostelnoe.views import DetskaPostelTypeViewSet,DetskaPostelSizeViewSet,DetskaPostelViewSet,DetskaPostelTcanViewSet,DetskaPostelBrendViewSet
 from odeyala.views import OdeyalaViewSet,OdeyalaTcanViewSet,OdeyalaBrendViewSet,OdeyalaSizeViewSet,OdeyalaTypeViewSet,OdeyalaFillerViewSet,OdeyalaFillerWeightViewSet
@@ -95,6 +95,7 @@ urlpatterns = [
     path('wishlispost/',WishlistPost.as_view()),
     path('wishlistdp/',WishlistPostDp.as_view()),
     path('deletewishlist/',DeleteWishlist.as_view()),
+    path('deletewishlistdp/',DeleteWishlistDp.as_view()),
     path('changepassword/',SendMailForNewEmail.as_view()),
     path('password/reset/confirm/', PasswordResetView.as_view(),),
 ]\

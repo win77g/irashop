@@ -100,6 +100,7 @@ class WishlistPostDp(APIView):
                                          slug = slug,
                                          price =  product["price"],
                                          image = product["image"],
+                                         image_link = product["image_link"],
                                          tkan = product["tkan_id"],
                                          brend = product["brend_id"])
 
@@ -115,4 +116,16 @@ class DeleteWishlist(APIView):
           wishlist.delete()
           wishlist = WishlistModel.objects.filter(token_key=token_key)
           serializer = WishlistModelSerializer(wishlist,many=True)
+          return Response({'data':serializer.data})
+
+class DeleteWishlistDp(APIView):
+
+       def post(self,request):
+          print(request.data)
+          slug = request.data.get("slug")
+          token_key = request.data.get("token_key")
+          wishlist = WishlistDpModel.objects.filter(token_key=token_key,slug=slug)
+          wishlist.delete()
+          wishlist = WishlistDpModel.objects.filter(token_key=token_key)
+          serializer = WishlistDpModelSerializer(wishlist,many=True)
           return Response({'data':serializer.data})
