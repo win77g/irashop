@@ -21,8 +21,8 @@ class  WishlistModel(models.Model):
     def __str__(self):
         return "Заказ %s " % (self.id)
     class Meta:
-        verbose_name = 'Товар в жиланиях'
-        verbose_name_plural = 'Товары в жиланиях'
+        verbose_name = 'Товар в желаниях'
+        verbose_name_plural = 'Товары в желаниях'
 
 
 class  WishlistDpModel(models.Model):
@@ -42,5 +42,5 @@ class  WishlistDpModel(models.Model):
     def __str__(self):
         return "Заказ %s " % (self.id)
     class Meta:
-        verbose_name = 'Товар в жиланиях'
-        verbose_name_plural = 'Товары в жиланиях'
+        verbose_name = 'Товар в желаниях'
+        verbose_name_plural = 'Товары в желаниях'
