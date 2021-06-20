@@ -9,7 +9,7 @@ from blog.views import BlogViewSet,TegViewSet
 from users.views import UserViewSet
 from userCabinet.views import ClientViewSet
 from home.views import BigSliderViewSet,AdvertisingImageViewSet
-from wishlist.views import WishlistPost,WishlistViewSet,DeleteWishlist,WishlistPostDp
+from wishlist.views import WishlistPost,WishlistViewSet,DeleteWishlist,WishlistPostDp,WishlistDpViewSet
 from quethen.views import QuethenViewSet
 from detskoePostelnoe.views import DetskaPostelTypeViewSet,DetskaPostelSizeViewSet,DetskaPostelViewSet,DetskaPostelTcanViewSet,DetskaPostelBrendViewSet
 from odeyala.views import OdeyalaViewSet,OdeyalaTcanViewSet,OdeyalaBrendViewSet,OdeyalaSizeViewSet,OdeyalaTypeViewSet,OdeyalaFillerViewSet,OdeyalaFillerWeightViewSet
@@ -79,6 +79,7 @@ router.register(r'advetising',AdvertisingImageViewSet)
 router.register(r'blog',BlogViewSet)
 router.register(r'teg',TegViewSet)
 router.register(r'wishlist',WishlistViewSet)
+router.register(r'wishlistdp2',WishlistDpViewSet)
 
 router.register(r'quethen',QuethenViewSet)
 urlpatterns = [

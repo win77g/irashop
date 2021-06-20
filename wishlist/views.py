@@ -18,6 +18,11 @@ class WishlistViewSet(viewsets.ModelViewSet):
     queryset = WishlistModel.objects.all()
     serializer_class = WishlistModelSerializer
 
+class WishlistDpViewSet(viewsets.ModelViewSet):
+    permission_classes = [permissions.AllowAny, ]
+    queryset = WishlistDpModel.objects.all()
+    serializer_class = WishlistDpModelSerializer    
+
 
 def querySet_to_list(qs):
     """
@@ -58,6 +63,7 @@ class WishlistPost(APIView):
                                          price_3 =  product["price_semeuka"],
                                          price_4 =  product['price_euro'],
                                          image = product["image"],
+                                         image_link = product["image_link"],
                                          tkan = product["tkan_id"],
                                          brend = product["brend_id"])
 
