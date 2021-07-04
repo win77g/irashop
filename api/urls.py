@@ -4,7 +4,7 @@ from django.conf.urls.static import static
 from django.conf import settings
 from product.views import GetProductForHomeViewSet,GetProductImageViewSet,SearchAPIView,ProductViewSet,ProductItemViewSet,ProductTcanViewSet,ProductBrendViewSet
 from order.views import ProductInBasketViewSet,Order,OrderViewSet,ProductInOrderViewSet
-from order.views import ProductInBasket,DeleteProductInBasket,UpdateProductInBasket
+from order.views import ProductInBasket,DeleteProductInBasket,UpdateProductInBasket,DelProductInBasket
 from blog.views import BlogViewSet,TegViewSet
 from users.views import UserViewSet
 from userCabinet.views import ClientViewSet
@@ -90,6 +90,7 @@ urlpatterns = [
     path('search/', SearchAPIView.as_view()),
     path('productinbasket/', ProductInBasket.as_view()),
     path('deleteproductinbasket/', DeleteProductInBasket.as_view()),
+    path('deleteallproductinbasket/', DelProductInBasket.as_view()),
     path('updateproductinbasket/', UpdateProductInBasket.as_view()),
     path('order/',Order.as_view()),
     path('wishlispost/',WishlistPost.as_view()),

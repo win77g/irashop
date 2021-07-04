@@ -49,6 +49,16 @@ class DeleteProductInBasket(APIView):
           serializer = ProductInBasketSerializer(products_in_baskets,many=True)
           return Response({'data':serializer.data})
 
+class DelProductInBasket(APIView):
+
+       def post(self,request):
+          token_key = request.data.get("token")
+          products_in_basket = ProductInBasketModel.objects.filter(token_key=token_key)
+          products_in_basket.delete()
+          products_in_baskets = ProductInBasketModel.objects.filter(token_key=token_key)
+          serializer = ProductInBasketSerializer(products_in_baskets,many=True)
+          return Response({'data':serializer.data})
+
 class UpdateProductInBasket(APIView):
 
        def post(self,request):
