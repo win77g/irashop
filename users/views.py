@@ -35,18 +35,18 @@ class SendMailForNewEmail(APIView):
         data = request.data
         customer_email = data["email"]
            
-        print(customer_email)
+        
         html_message = render_to_string('change_password_template.html')
         plain_message = strip_tags(html_message)
 
         send_mail('Percale - Интернет магазин домашнего текстиля',
                               plain_message,
-                              'sergsergio777@gmail.com',
+                              'percaleshop@gmail.com',
                               [customer_email,], html_message=html_message,)
         return Response(status=201)  
 
 class PasswordResetView(APIView):
     def get (self, request, uid, token):
         post_data = {'uid': uid, 'token': token}
-        print(post_data)
+        
         return Response(post_data)       
