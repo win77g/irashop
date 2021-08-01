@@ -43,7 +43,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # sitemap
+    'django.contrib.sites',
+    'django.contrib.sitemaps',
     # pip install django-ckeditor
+    # 'backend',
     'ckeditor',
     'ckeditor_uploader',
     # pip install django-mptt
@@ -76,7 +80,7 @@ INSTALLED_APPS = [
     'pokryvala',
     'polotenca',
 ]
-
+SITE_ID = 3
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',

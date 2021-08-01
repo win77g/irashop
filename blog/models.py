@@ -39,6 +39,7 @@ class Blog(models.Model):
     top = models.BooleanField(default=False,verbose_name='В топе(на гл.странице)')
     created = models.DateTimeField(auto_now_add=True,auto_now=False,verbose_name='Дата создания')
     updated = models.DateTimeField(auto_now_add=False,auto_now=True,verbose_name='Дата последнего обновления')
+    modified_date = models.DateTimeField(auto_now=True, verbose_name="date updated")
     # вывод одного поля
     def __str__(self):
         return " %s" % self.name
