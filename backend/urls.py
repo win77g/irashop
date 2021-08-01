@@ -2,17 +2,17 @@ from django.contrib import admin
 from django.urls import path,include
 from django.conf.urls.static import static
 from django.conf import settings
-from index.views import index
+from index.views import indexx
 # from rest_framework_simplejwt.views import TokenObtainPairView,TokenRefreshView
 # sitemap urls
-from .sitemap import ArticleSitemap,StaticSitemap,DetskaPostelSitemap,OdeyalaSitemap,PledSitemap,PodushkiSitemap,PokryvalaSitemap,PolotencaSitemap,ProductSitemap
+from .sitemap import ArticleSitemap,StaticViewSitemap,DetskaPostelSitemap,OdeyalaSitemap,PledSitemap,PodushkiSitemap,PokryvalaSitemap,PolotencaSitemap,ProductSitemap
 # from django.contrib import sitemaps
 from django.contrib.sitemaps.views import sitemap ,index
 
 
 
 sitemaps = {
-    'static':StaticSitemap,
+    'static':StaticViewSitemap,
     'blog': ArticleSitemap,
     'detskoe-postelnoe':DetskaPostelSitemap,
     'odeyala':OdeyalaSitemap,
@@ -20,11 +20,11 @@ sitemaps = {
     'podushki':PodushkiSitemap,
     'pokryvala':PokryvalaSitemap,
     'polotenca':PolotencaSitemap,
-    'postelnoe-belie':ProductSitemap
+    'postelnoe-belie':ProductSitemap,
 }
 
 urlpatterns = [
-    path('', index),
+    path('', indexx),
     path('admin/', admin.site.urls),
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path('api/', include('api.urls')),

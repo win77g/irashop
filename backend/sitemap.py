@@ -128,8 +128,8 @@ class ProductSitemap(Sitemap):
  
     def lastmod(self, obj):
         return obj.updated   
-        
-class StaticSitemap(Sitemap):
+
+class StaticViewSitemap(Sitemap):
     changefreq = "yearly"
     priority = 0.8
     protocol = 'https'
