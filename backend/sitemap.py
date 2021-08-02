@@ -24,7 +24,7 @@ class ArticleSitemap(Sitemap):
         return Blog.objects.all()
     
     def location(self, obj):
-        return '#/blog/%s '% obj.slug
+        return '/#/blog/%s '% obj.slug
  
     def lastmod(self, obj):
         return obj.modified_date 
