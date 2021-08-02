@@ -41,7 +41,7 @@ class DetskaPostelSitemap(Sitemap):
         return DetskaPostel.objects.all()
     
     def location(self, obj):
-        return '/detskoe-postelnoe/%s '% obj.slug
+        return '/#/product/detskoe-postelnoe/%s '% obj.slug
  
     def lastmod(self, obj):
         return obj.updated        
@@ -54,7 +54,7 @@ class OdeyalaSitemap(Sitemap):
         return Odeyala.objects.all()
     
     def location(self, obj):
-        return '/odeyala/%s '% obj.slug
+        return '/#/product/odeyala/%s '% obj.slug
  
     def lastmod(self, obj):
         return obj.updated     
@@ -68,7 +68,7 @@ class PledSitemap(Sitemap):
         return Pled.objects.all()
     
     def location(self, obj):
-        return '/pled/%s '% obj.slug
+        return '/#/product/pled/%s '% obj.slug
  
     def lastmod(self, obj):
         return obj.updated 
@@ -82,7 +82,7 @@ class PodushkiSitemap(Sitemap):
         return Podushki.objects.all()
     
     def location(self, obj):
-        return '/podushki/%s '% obj.slug
+        return '/#/product/podushki/%s '% obj.slug
  
     def lastmod(self, obj):
         return obj.updated         
@@ -96,7 +96,7 @@ class PokryvalaSitemap(Sitemap):
         return Pokryvala.objects.all()
     
     def location(self, obj):
-        return '/pokryvala/%s '% obj.slug
+        return '/#/product/pokryvala/%s '% obj.slug
  
     def lastmod(self, obj):
         return obj.updated      
@@ -110,7 +110,7 @@ class PolotencaSitemap(Sitemap):
         return Polotenca.objects.all()
     
     def location(self, obj):
-        return '/polotenca/%s '% obj.slug
+        return '/#/product/polotenca/%s '% obj.slug
  
     def lastmod(self, obj):
         return obj.updated     
@@ -124,7 +124,7 @@ class ProductSitemap(Sitemap):
         return Product.objects.all()
     
     def location(self, obj):
-        return '/postelnoe-belie/%s '% obj.slug
+        return '/#/product/postelnoe-belie/%s '% obj.slug
  
     def lastmod(self, obj):
         return obj.updated   
@@ -138,4 +138,4 @@ class StaticViewSitemap(Sitemap):
         return ['contact','delivery','pay']
 
     def location(self, item):
-        return item     
+        return '/#/%s '%item     
